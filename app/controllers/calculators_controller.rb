@@ -42,6 +42,15 @@ class CalculatorsController < ApplicationController
   end
 
   def payment_result
+    @apr = params.fetch("apr").to_f
+    @percent = @apr / 100
+    @monthly = @percent / 12
+    @years = params.fetch("years").to_f
+    @n = @years * 12
+    @principal = params.fetch("principal").to_f
+    @numerator = @monthly * @principal
+    @denominator = 1 - (1 + @monthly)**(-@n)
+    @results = (@numerator/@denominator).to_fs(:currency)
     render ({ :template => "calculator_templates/payment_results"})
   end
 
