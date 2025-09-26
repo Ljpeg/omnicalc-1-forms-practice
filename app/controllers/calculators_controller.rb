@@ -4,13 +4,21 @@ class CalculatorsController < ApplicationController
   end
 
   def square
-    @num = params.fetch("num").to_f
-    @result = @num * @num
+    # @num = params.fetch("num").to_f
+    # @result = @num * @num
+
+    render ({ :template => "calculator_templates/square_root_results"})
   end
 
-  def square_root
+  def square_root_new
+    render ({ :template => "calculator_templates/square_root"})
+  end 
+
+  def square_root_result
     @num = params.fetch("num").to_f
     @result = Math.sqrt(@num)
+
+    render ({ :template => "calculator_templates/square_root_results"})
   end
 
   def random_num
