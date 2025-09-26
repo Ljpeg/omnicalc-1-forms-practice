@@ -25,9 +25,24 @@ class CalculatorsController < ApplicationController
     render ({ :template => "calculator_templates/square_root_results"})
   end
 
-  def random_num
+  def random_num_new
+    render ({ :template => "calculator_templates/random"})
+  end
+
+  def random_num_result
     @min = params.fetch("min").to_f
     @max = params.fetch("max").to_f
+    @result = rand(@min..@max)
+
+    render ({ :template => "calculator_templates/random_results"})
   end 
+
+  def payment_new
+    render ({ :template => "calculator_templates/payment"})
+  end
+
+  def payment_result
+    render ({ :template => "calculator_templates/payment_results"})
+  end
 
 end 
